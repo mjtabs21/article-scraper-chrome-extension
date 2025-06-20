@@ -649,10 +649,6 @@
     margin-top: calc(var(--spacing) * 4);
   }
 
-  .mt-8 {
-    margin-top: calc(var(--spacing) * 8);
-  }
-
   .mt-auto {
     margin-top: auto;
   }
@@ -1618,10 +1614,6 @@
 
   .px-6 {
     padding-inline: calc(var(--spacing) * 6);
-  }
-
-  .px-8 {
-    padding-inline: calc(var(--spacing) * 8);
   }
 
   .py-0\.5 {
