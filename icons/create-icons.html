@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Icon Generator</title>
+</head>
+<body>
+    <canvas id="canvas" style="border: 1px solid #ccc;"></canvas>
+    <br><br>
+    <button onclick="generateIcon(16)">Generate 16x16</button>
+    <button onclick="generateIcon(32)">Generate 32x32</button>
+    <button onclick="generateIcon(48)">Generate 48x48</button>
+    <button onclick="generateIcon(128)">Generate 128x128</button>
+    <br><br>
+    <div id="downloads"></div>
+
+    <script>
+        function generateIcon(size) {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = size;
+            canvas.height = size;
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(1, '#764ba2');
+            
+            // Draw background circle
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/2 - 2, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Draw white border
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            // Draw document
+            const docWidth = size * 0.4;
+            const docHeight = size * 0.55;
+            const docX = size * 0.2;
+            const docY = size * 0.2;
+            
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.fillRect(docX, docY, docWidth, docHeight);
+            
+            // Draw document lines
+            ctx.strokeStyle = '#667eea';
+            ctx.lineWidth = Math.max(1, size / 64);
+            
+            const lineSpacing = docHeight / 6;
+            for (let i = 1; i <= 4; i++) {
+                ctx.beginPath();
+                ctx.moveTo(docX + docWidth * 0.1, docY + lineSpacing * i);
+                ctx.lineTo(docX + docWidth * 0.9, docY + lineSpacing * i);
+                ctx.stroke();
+            }
+            
+            // Draw extract arrow if size is large enough
+            if (size >= 32) {
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = Math.max(2, size / 32);
+                ctx.lineCap = 'round';
+                
+                const arrowX = size * 0.7;
+                const arrowY = size * 0.45;
+                const arrowSize = size * 0.1;
+                
+                // Arrow line
+                ctx.beginPath();
+                ctx.moveTo(arrowX, arrowY);
+                ctx.lineTo(arrowX + arrowSize * 1.5, arrowY);
+                ctx.stroke();
+                
+                // Arrow head
+                ctx.beginPath();
+                ctx.moveTo(arrowX + arrowSize, arrowY - arrowSize * 0.5);
+                ctx.lineTo(arrowX + arrowSize * 1.5, arrowY);
+                ctx.lineTo(arrowX + arrowSize, arrowY + arrowSize * 0.5);
+                ctx.stroke();
+            }
+            
+            // Create download link
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `icon${size}.png`;
+                a.textContent = `Download icon${size}.png`;
+                a.style.display = 'block';
+                a.style.margin = '5px 0';
+                
+                const downloads = document.getElementById('downloads');
+                downloads.appendChild(a);
+                
+                // Auto-click to download
+                a.click();
+            });
+        }
+        
+        // Generate all icons on load
+        window.onload = function() {
+            setTimeout(() => generateIcon(16), 100);
+            setTimeout(() => generateIcon(32), 200);
+            setTimeout(() => generateIcon(48), 300);
+            setTimeout(() => generateIcon(128), 400);
+        };
+    </script>
+</body>
+</html>
