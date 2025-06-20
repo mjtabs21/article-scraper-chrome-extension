@@ -1,0 +1,44 @@
+{
+  "name": "article-scraper-extension",
+  "version": "1.0.0",
+  "description": "One-click article content extraction Chrome extension",
+  "main": "background.js",
+  "scripts": {
+    "build": "echo 'Extension files are ready for Chrome'",
+    "install-guide": "echo 'Open install.html in your browser for installation instructions'",
+    "generate-icons": "echo 'Open create-icons.html in your browser to generate icon files'"
+  },
+  "keywords": [
+    "chrome-extension",
+    "article-scraper",
+    "content-extraction",
+    "web-scraping",
+    "one-click",
+    "productivity"
+  ],
+  "author": "Article Scraper Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/article-scraper-extension"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/article-scraper-extension/issues"
+  },
+  "homepage": "https://github.com/your-username/article-scraper-extension#readme",
+  "manifest_version": 3,
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "http://localhost:8000/*",
+    "https://*/*",
+    "http://*/*"
+  ],
+  "devDependencies": {},
+  "dependencies": {},
+  "engines": {
+    "chrome": ">=88.0.0"
+  }
+}
