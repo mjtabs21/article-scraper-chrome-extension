@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Scraper Extension - Installation Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .step {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px solid #f0f0f0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .step-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .step-content {
+            color: #666;
+            margin-left: 45px;
+        }
+
+        .code {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px 10px 10px 0;
+        }
+
+        .button:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .button.secondary {
+            background: #28a745;
+        }
+
+        .button.secondary:hover {
+            background: #218838;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .icon-generator {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .file-list {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .file-list ul {
+            list-style: none;
+            margin-left: 20px;
+        }
+
+        .file-list li {
+            margin: 5px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .file-list li:before {
+            content: "📄 ";
+            margin-right: 5px;
+        }
+
+        .folder:before {
+            content: "📁 " !important;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            color: #666;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .feature p {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📄 Article Scraper Extension</h1>
+            <p>One-click article extraction for Chrome</p>
+        </div>
+
+        <div class="content">
+            <div class="warning">
+                <strong>⚠️ Prerequisites:</strong> Make sure the Article Scraper web application is running on <code>http://localhost:8000</code> before installing the extension.
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🚀</div>
+                    <h3>One-Click Extract</h3>
+                    <p>Extract article content instantly from any webpage</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📋</div>
+                    <h3>Multiple Copy Options</h3>
+                    <p>Copy title, date, content, or everything at once</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Quick Access</h3>
+                    <p>Keyboard shortcuts, floating buttons, and context menus</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Smart Detection</h3>
+                    <p>Automatically detects article content on web pages</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">1</span>
+                    Generate Extension Icons
+                </div>
+                <div class="step-content">
+                    <p>First, you need to generate the required icon files for the extension:</p>
+                    <div class="icon-generator">
+                        <p><strong>Click the button below to generate icons:</strong></p>
+                        <a href="create-icons.html" target="_blank" class="button">🎨 Generate Icons</a>
+                        <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                            This will open a page that automatically generates and downloads the required icon files.
+                        </p>
+                    </div>
+                    <p>After clicking the button above:</p>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li>The icon generator page will open</li>
+                        <li>It will automatically download 4 icon files</li>
+                        <li>Move these files to the <code>icons/</code> folder in your extension directory</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">2</span>
+                    Verify File Structure
+                </div>
+                <div class="step-content">
+                    <p>Make sure your extension folder has all the required files:</p>
+                    <div class="file-list">
+                        <ul>
+                            <li class="folder">article-scraper-extension/</li>
+                            <li>├── manifest.json</li>
+                            <li>├── popup.html</li>
+                            <li>├── popup.js</li>
+                            <li>├── background.js</li>
+                            <li>├── content.js</li>
+                            <li>├── create-icons.html</li>
+                            <li>├── install.html</li>
+                            <li>├── README.md</li>
+                            <li class="folder">└── icons/</li>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;├── icon.svg</li>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;├── icon16.png</li>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;├── icon32.png</li>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;├── icon48.png</li>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;└── icon128.png</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">3</span>
+                    Load Extension in Chrome
+                </div>
+                <div class="step-content">
+                    <p>Now install the extension in your Chrome browser:</p>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li>Open Chrome and navigate to <code>chrome://extensions/</code></li>
+                        <li>Enable "Developer mode" using the toggle in the top-right corner</li>
+                        <li>Click the "Load unpacked" button</li>
+                        <li>Select the folder containing all the extension files</li>
+                        <li>The extension should now appear in your toolbar!</li>
+                    </ol>
+                    <div class="code">
+                        chrome://extensions/
+                    </div>
+                    <a href="chrome://extensions/" class="button" target="_blank">🔧 Open Chrome Extensions</a>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">4</span>
+                    Test the Extension
+                </div>
+                <div class="step-content">
+                    <p>Test that everything is working correctly:</p>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li>Navigate to any article webpage (try Wikipedia)</li>
+                        <li>Click the Article Scraper extension icon in your toolbar</li>
+                        <li>Click "🚀 Extract Article Content"</li>
+                        <li>Verify that the content is extracted and copy buttons work</li>
+                    </ol>
+                    <p style="margin-top: 15px;"><strong>Alternative test methods:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Press <code>Ctrl+Shift+E</code> (or <code>Cmd+Shift+E</code> on Mac)</li>
+                        <li>Look for the floating 📄 button on article pages</li>
+                        <li>Right-click and select "Extract Article Content"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="success">
+                <strong>🎉 Success!</strong> Your Article Scraper extension is now ready to use. You can extract article content with just one click from any webpage!
+            </div>
+
+            <div class="step">
+                <div class="step-title">
+                    <span class="step-number">💡</span>
+                    Usage Tips
+                </div>
+                <div class="step-content">
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Quick Extract:</strong> Use <code>Ctrl+Shift+E</code> for instant extraction</li>
+                        <li><strong>Floating Button:</strong> Appears automatically on article pages</li>
+                        <li><strong>Copy Options:</strong> Choose from title, date, content, or all combined</li>
+                        <li><strong>Caching:</strong> Previously extracted articles are cached for quick access</li>
+                        <li><strong>Context Menu:</strong> Right-click anywhere to extract content</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="warning">
+                <strong>🔧 Troubleshooting:</strong>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>If extraction fails, ensure the web app is running on <code>http://localhost:8000</code></li>
+                    <li>If icons are missing, regenerate them using the icon generator</li>
+                    <li>If the extension doesn't appear, reload it in <code>chrome://extensions/</code></li>
+                    <li>Some websites may block automated scraping - this is normal</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>🚀 <strong>Article Scraper Extension</strong> - Extract content with one click!</p>
+            <p style="margin-top: 10px;">Built with ❤️ for efficient content extraction</p>
+        </div>
+    </div>
+</body>
+</html>
